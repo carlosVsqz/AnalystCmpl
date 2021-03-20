@@ -1,0 +1,124 @@
+plugins {
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.8'
+    id "com.github.andrescv.jcup" version "1.0"
+    id "org.jetbrains.grammarkit" version "2020.3.2"
+//    id("cup.gradle.cup-gradle-plugin") version "1.2"
+//    id("org.xbib.gradle.plugin.jflex") version "1.2.1"
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+}
+
+/*
+FX 13 Configurations
+*/
+javafx {
+    version = "13"
+    modules = ['javafx.controls', 'javafx.fxml']
+}
+
+mainClassName = 'com.escod.compiler.MainApp'
+
+/*
+Cup Configurations
+*/
+
+jcup {
+    // CUP input file (default 'src/main/jcup/parser.cup')
+    input = file('src/main/cup/Syntax.cup')
+    // CUP -destdir option (default 'buildDir/generated-src/jcup')
+    destdir = file('src/main/java/com/escod/compiler/cup')
+    // CUP -parser option (default 'parser')
+    parser = 'Syntax'
+    // CUP -symbols option (default 'sym')
+    symbols = 'sym'
+    // CUP -interface option
+    iface = false
+    // CUP -expect option
+    expect = 0
+    // CUP -nonterms option
+    nonterms = false
+    // CUP -compact_red option
+    compact_red = false
+    // CUP -nowarn option
+    nowarn = false
+    // CUP -nosummary option
+    nosummary = true
+    // CUP -nopositions option
+    nopositions = false
+    // CUP -locations option
+    locations = false
+    // CUP -xmlactions
+    xmlactions = false
+    // CUP -genericlabels option
+    genericlabels = false
+    // CUP -noscanner option
+    noscanner = false
+    // CUP -progress option
+    progress = false
+    // CUP -time option
+    time = false
+    // CUP -dump_grammar option
+    dump_grammar = false
+    // CUP -dump_states option
+    dump_states = false
+    // CUP -dump_tables option
+    dump_tables = false
+}
+
+/*
+Flex Configurations by Grammar kit
+ */
+apply plugin: 'org.jetbrains.grammarkit'
+
+// import is optional to make task creation easier
+import org.jetbrains.grammarkit.tasks.*
+
+grammarKit {
+    // version of IntelliJ patched JFlex (see bintray link below), Default is 1.7.0-1
+    jflexRelease = '1.7.0-1'
+
+    // tag or short commit hash of Grammar-Kit to use (see link below). Default is 2020.3.1
+    grammarKitRelease = '6452fde524'
+}
+
+task generateLexer(type: GenerateLexer) {
+    // source flex file
+    source = "src/main/jflex/Lexer.flex"
+
+    // target directory for lexer
+    targetDir = "src/main/java/com/escod/compiler/flex"
+
+    // target classname, target file will be targetDir/targetClass.java
+    targetClass = "Lexer"
+
+    // optional, path to the task-specific skeleton file. Default: none
+    //skeleton = '/some/specific/skeleton'
+
+    // if set, plugin will remove a lexer output file before generating new one. Default: false
+    purgeOldFiles = true
+}
+
+task generateLexerCup(type: GenerateLexer) {
+    // source flex file
+    source = "src/main/jflex/LexerCup.flex"
+
+    // target directory for lexer
+    targetDir = "src/main/java/com/escod/compiler/flex"
+
+    // target classname, target file will be targetDir/targetClass.java
+    targetClass = "LexerCup"
+
+    // optional, path to the task-specific skeleton file. Default: none
+    //skeleton = '/some/specific/skeleton'
+
+    // if set, plugin will remove a lexer output file before generating new one. Default: false
+    purgeOldFiles = true
+}
+
+
