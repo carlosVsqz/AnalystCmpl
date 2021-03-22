@@ -26,6 +26,7 @@ mainClassName = 'com.escod.compiler.MainApp'
 
 /*
 Cup Configurations
+https://github.com/andrescv/jcup-gradle-plugin
 */
 
 jcup {
@@ -73,6 +74,7 @@ jcup {
 
 /*
 Flex Configurations by Grammar kit
+https://github.com/JetBrains/gradle-grammar-kit-plugin
  */
 apply plugin: 'org.jetbrains.grammarkit'
 
@@ -120,5 +122,4 @@ task generateLexerCup(type: GenerateLexer) {
     // if set, plugin will remove a lexer output file before generating new one. Default: false
     purgeOldFiles = true
 }
-
 
