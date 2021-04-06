@@ -20,7 +20,7 @@
                         <HBox alignment="CENTER_LEFT" spacing="20.0">
                             <children>
                                 <Label fx:id="lblInfo" text="%text_info" />
-                                <TextField />
+                                <TextField fx:id="txtA" />
                             </children>
                         </HBox>
                         <HBox alignment="CENTER_LEFT" spacing="80.0">
