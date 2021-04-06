@@ -4,7 +4,6 @@ package com.escod.compiler.utils;
 public enum Tokens {
 //    que es un token????????
 //    los tokens son palabras reservadas del lenguaje la caracteristica
-
     Linea,
     Comillas,
     T_dato,
