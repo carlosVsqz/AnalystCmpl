@@ -1,6 +1,5 @@
 package com.escod.compiler.flex;
 import java_cup.runtime.Symbol;
-import com.escod.compiler.cup.sym;
 %%
 %public
 %class LexerCup

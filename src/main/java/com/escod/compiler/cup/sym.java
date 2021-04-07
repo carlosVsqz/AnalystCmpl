@@ -5,8 +5,8 @@
 
 package com.escod.compiler.cup;
 
-/** CUP generated class containing symbol constants. */
-public class sym {
+/** CUP generated interface containing symbol constants. */
+public interface sym {
   /* terminals */
   public static final int Else = 8;
   public static final int Parentesis_c = 23;
@@ -19,8 +19,8 @@ public class sym {
   public static final int ERROR = 32;
   public static final int Corchete_a = 26;
   public static final int Identificador = 30;
-  public static final int Int = 5;
   public static final int Comillas = 3;
+  public static final int Int = 5;
   public static final int Llave_c = 25;
   public static final int Llave_a = 24;
   public static final int Op_relacional = 18;
@@ -39,8 +39,8 @@ public class sym {
   public static final int Op_logico = 17;
   public static final int Do = 9;
   public static final int Igual = 12;
-  public static final int Multiplicacion = 15;
   public static final int While = 10;
+  public static final int Multiplicacion = 15;
   public static final String[] terminalNames = new String[] {
   "EOF",
   "error",
