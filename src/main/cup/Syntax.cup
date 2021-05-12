@@ -14,20 +14,24 @@ parser code
 }
 :};
 
-terminal  Op_booleano, Parentesis_a, Parentesis_c,
-    Numero, AND, OR, NOT, ERROR;
+terminal
+Espacio, If, Parentesis_abierto, Parentesis_cerrado, P_coma, Igual, Numero, Identificador, Else,ERROR;
 
-non terminal INICIO, EXPRESION;
+nonterminal  SENTENCIA, SENTENCIA_BOOLEANA, DECLARACION, IF, IF_ELSE ;
 
-start with INICIO;
+start with SENTENCIA;
 
-INICIO ::=
-        EXPRESION:e                                     {: System.out.println(e);:}
-    |   Parentesis_a EXPRESION:e  Parentesis_c          {: System.out.println(e);:}
-    |   EXPRESION Parentesis_a EXPRESION:e  Parentesis_c          {: System.out.println(e);:}
+SENTENCIA ::=
+//    IF                  |
+//    SENTENCIA IF        |
+    SENTENCIA IF_ELSE             |
+//    SENTENCIA IF_ELSE   |
+//    SENTENCIA DECLARACION
 ;
-EXPRESION ::=
-        Op_booleano:n1 AND Op_booleano:n2               {: RESULT= "n1 && n2" :}
-    |   Op_booleano:n1 OR Op_booleano:n2                {: RESULT= "n1 || n2" :}
-    |   NOT:n                                    {: RESULT= "!n":}
-;
+
+//IF ::= If Parentesis_abierto SENTENCIA_BOOLEANA Parentesis_cerrado SENTENCIA ;
+IF_ELSE ::= If
+ Parentesis_abierto SENTENCIA_BOOLEANA Parentesis_cerrado
+  Espacio DECLARACION Espacio Else Espacio DECLARACION;
+SENTENCIA_BOOLEANA ::= Identificador Igual Numero;
+DECLARACION ::= Identificador  Igual Numero P_coma;
